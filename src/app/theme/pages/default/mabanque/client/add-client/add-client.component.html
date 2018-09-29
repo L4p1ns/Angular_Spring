@@ -1,0 +1,56 @@
+<form novalidate #f="ngForm" (ngSubmit)="createClient(f)" class="m-form m-form--fit m-form--label-align-right">
+<!-- <div class="alert alert-danger" *ngIf="form.errors">Le nom ou l'email n'est pas valide</div> -->
+<ng-template #alertClient></ng-template>
+    <div class="m-portlet__body">
+        <div class="form-group m-form__group m--margin-top-10">
+            <div class="alert m-alert m-alert--default" role="alert">
+                Formulaire d'inscription client.
+            </div>
+        </div>
+        <div class="form-group m-form__group row">
+            <label for="example-text-input" class="col-2 col-form-label">
+                Nom
+            </label>
+            <div class="col-10">
+                <input
+                [(ngModel)]="client.nom"
+                name="nom"
+                #clientNom="ngModel"
+                minlength="2"
+                required
+                class="form-control m-input"
+                type="text"
+                placeholder="Nom">
+                <div *ngIf="clientNom.errors?.required && clientNom.touched" class="alert alert-danger">Le nom est obligatoire</div>
+                <div *ngIf="clientNom.errors?.minlength && clientNom.touched" class="alert alert-danger">Le nom doit etre 3 caractere mininmum</div>
+            </div>
+		</div>
+        <div class="form-group m-form__group row">
+            <label for="exampleInputEmail1" class="col-2 col-form-label">
+                Addresse Email
+            </label>
+            <div class="col-10">
+                <input [(ngModel)]="client.email" name="email" #clientEmail="ngModel" required minlength="6" type="email" class="form-control m-input" id="email" aria-describedby="emailHelp" placeholder="Adresse mail">
+                <div *ngIf="clientEmail.errors?.required && clientEmail.touched" class="alert alert-danger">L'email est obligatoire</div>
+                <div *ngIf="clientEmail.errors?.minlength && clientEmail.touched" class="alert alert-danger">L'email doit etre 6 caractere mininmum</div>
+            </div>
+            <span class="m-form__help">
+                We'll never share your email with anyone else.
+            </span>
+        </div>
+    </div>
+    <div class="m-portlet__foot m-portlet__foot--fit">
+        <div class="m-form__actions">
+            <div class="row">
+                <div class="col-2"></div>
+                <div class="col-10">
+                    <input class="btn m-btn m-btn--gradient-from-metal m-btn--gradient-to-accent" type="submit" value="Valider" >
+
+                    <button type="reset" class="btn btn-secondary">
+                        Cancel
+                    </button>
+                </div>
+            </div>
+        </div>
+	</div>
+</form>

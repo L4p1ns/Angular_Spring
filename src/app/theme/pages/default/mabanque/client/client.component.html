@@ -1,0 +1,54 @@
+<div class="m-portlet">
+        <div class="m-portlet__head">
+            <div class="m-portlet__head-caption">
+                <div class="m-portlet__head-title">
+                    <h3 class="m-portlet__head-text">
+                        Listes des Clients
+                    </h3>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="clients" class="m-portlet__body">
+            <!--begin::Section-->
+            <div class="m-section">
+            <div class="m-section__content">
+                <table class="table table-sm m-table m-table--head-bg-brand">
+                    <thead class="thead-inverse">
+                        <tr>
+                            <th>
+                                Code Client
+                            </th>
+                            <th>
+                                Nom
+                            </th>
+                            <th>
+                                Email
+                            </th>
+                            <th>
+                                Actions
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let client of clients._embedded.clients">
+                            <th scope="row">
+                                {{client.code}}
+                            </th>
+                            <td>
+                                {{client.nom}}
+                            </td>
+                            <td>
+                                {{client.email}}
+                            </td>
+                            <td>
+                                <a [routerLink]="['/client/'+client.code]" href="">Details</a>
+                                <a href="">Delet</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!--end::Section-->
+    </div>
+</div>
