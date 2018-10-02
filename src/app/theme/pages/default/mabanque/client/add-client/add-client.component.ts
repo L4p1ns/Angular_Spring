@@ -56,7 +56,7 @@ export class AddClientComponent implements OnInit {
       'assets/vendors/base/vendors.bundle.js',
       'assets/demo/demo10/base/scripts.bundle.js'], true).then(() => {
         Helpers.setLoading(false);
-  }
+      });
 }
   // showAlert
   showAlert(target) {
