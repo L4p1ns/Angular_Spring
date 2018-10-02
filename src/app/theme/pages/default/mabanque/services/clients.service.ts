@@ -27,15 +27,14 @@ export class ClientsService {
     });
   }
 
-  updateClient(client: Client) {
-    return this.http.patch(
-      this.url + "/" + client.code,
-      JSON.stringify(client),
-      { headers: this.httpOptions.monheaders }
-    );
+  updateClient(id: number, client: Client) {
+    //client: Client
+    return this.http.patch(this.url + "/" + id, JSON.stringify(client), {
+      headers: this.httpOptions.monheaders
+    });
   }
 
-  deleteClient(id:number) {
+  deleteClient(id: number) {
     return this.http.delete(this.url + "/" + id, {
       headers: this.httpOptions.monheaders
     });

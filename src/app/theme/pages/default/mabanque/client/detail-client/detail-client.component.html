@@ -1,3 +1,4 @@
+<ng-template #alertClient></ng-template>
 <div class="row">
   <div class="col-md-6">
     <a routerLink="/client" class="btn btn-link"><i class="fa fa-arrow-circle-o-left"></i>Retour</a>
@@ -5,7 +6,7 @@
   <div class="col-md-6">
     <div class="btn-group pull-right">
       <a [routerLink]="['/edit-client/'+id]" class="btn btn-secondary">Modifier</a>
-      <button (click)="supprimerClient()" type="button" class="btn btn-danger">Supprimer</button>
+      <button (click)="supprimerClient(id)" type="button" class="btn btn-danger">Supprimer</button>
     </div>
   </div>
 </div>

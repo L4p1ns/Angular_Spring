@@ -34,6 +34,11 @@ const routes: Routes = [
           "./pages/default/mabanque/client/detail-client/detail-client.module#DetailClientRoutingModule"
       },
       {
+        path: "edit-client/:id",
+        loadChildren:
+          "./pages/default/mabanque/client/edit-client/edit-client.module#EditClientModule"
+      },
+      {
         path: "compte",
         loadChildren:
           "./pages/default/mabanque/compte/compte.module#CompteRoutingModule"
