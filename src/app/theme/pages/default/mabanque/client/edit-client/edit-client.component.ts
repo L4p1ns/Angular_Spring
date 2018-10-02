@@ -29,8 +29,8 @@ export class EditClientComponent implements OnInit {
     nom: "",
     email: ""
   };
-  @ViewChild("alertClient", { read: ViewContainerRef })
-  alertClient: ViewContainerRef;
+  @ViewChild("alertUpdateClient", { read: ViewContainerRef })
+  alertUpdateClient: ViewContainerRef;
   constructor(
     private clientService: ClientsService,
     private router: Router,
@@ -46,11 +46,17 @@ export class EditClientComponent implements OnInit {
       this.monclient = client;
       console.log(this.monclient);
     });
+    //
+    this._script.loadScripts('body', [
+    'assets/vendors/base/vendors.bundle.js',
+    'assets/demo/demo10/base/scripts.bundle.js'], true).then(() => {
+      Helpers.setLoading(false);
+    });
   }
 
   modifierClient({ value, valid }: { value: Client; valid: boolean }) {
     if (!valid) {
-      this.showAlert("alertClient");
+      this.showAlert("alertUpdateClient");
       this._alertService.error(
         "Veillez remplir correctement les champs!",
         true

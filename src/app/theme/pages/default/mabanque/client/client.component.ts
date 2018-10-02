@@ -11,7 +11,7 @@ import { Helpers } from "../../../../../helpers";
 export class ClientComponent implements OnInit {
   // clients: any[];
   // clients: Client;
-  clients;
+  clients:any ={};
 
   @ViewChild("alertClient", { read: ViewContainerRef })
   alertClient: ViewContainerRef;
