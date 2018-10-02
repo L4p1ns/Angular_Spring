@@ -7,6 +7,8 @@ import { DefaultComponent } from "../../../default.component";
 
 import { AddClientComponent } from "./add-client.component";
 import { ClientsService } from "../../services/clients.service";
+// import { AlertComponent } from "../../../../../../auth/_directives/alert.component";
+import { AlertService } from "../../../../../../auth/_services/alert.service";
 
 const routes: Routes = [
   {
@@ -25,6 +27,7 @@ const routes: Routes = [
   imports: [CommonModule, RouterModule.forChild(routes), LayoutModule],
   exports: [RouterModule],
   declarations: [AddClientComponent],
-  providers: [ClientsService]
+  providers: [ClientsService, AlertService]
+  // entryComponents: [AlertComponent]
 })
 export class AddClientRoutingModule {}

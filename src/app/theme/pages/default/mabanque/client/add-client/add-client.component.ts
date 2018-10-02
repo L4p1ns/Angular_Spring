@@ -1,24 +1,16 @@
-import {
-  Component,
-  ComponentFactoryResolver,
-  ViewChild,
-  OnInit,
-  ViewContainerRef,
-  ViewEncapsulation
-} from "@angular/core";
-import { Helpers } from "../../../../../../helpers";
-// import { FormControl, FormGroup, Validators } from "@angular/forms";
-import { ClientsService } from "../../services";
-// import { NomValidators } from "./nom.validator";
-import { Client } from "../../models/client";
-import { Router } from "@angular/router";
-import { AlertComponent } from "../../../../../../auth/_directives/alert.component";
-import { AlertService } from "../../../../../../auth/_services/alert.service";
+import { Component, ComponentFactoryResolver, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
+import { Router } from '@angular/router';
+
+import { ScriptLoaderService } from '../../../../../../_services/script-loader.service';
+import { AlertComponent } from '../../../../../../auth/_directives/alert.component';
+import { AlertService } from '../../../../../../auth/_services/alert.service';
+import { Helpers } from '../../../../../../helpers';
+import { Client } from '../../models/client';
+import { ClientsService } from '../../services/clients.service';
 
 @Component({
   selector: "add-client",
-  templateUrl: "./add-client.component.html",
-  encapsulation: ViewEncapsulation.None
+  templateUrl: "./add-client.component.html"
 })
 export class AddClientComponent implements OnInit {
   client: Client = {
@@ -26,67 +18,46 @@ export class AddClientComponent implements OnInit {
     email: ""
   };
   loading = false;
+
   @ViewChild("alertClient", { read: ViewContainerRef })
   alertClient: ViewContainerRef;
-  /*
-  form = new FormGroup({
-    nom: new FormControl("", [
-      Validators.required,
-      Validators.minLength(3),
-      NomValidators.neDoitPasContenirEspace
-    ]),
-    email: new FormControl(
-      "",
-      [Validators.required, Validators.minLength(8), Validators.email],
-      NomValidators.doitEtreUnique
-    )
-  });
 
-  get nom() {
-    return this.form.get("nom");
-  }
-  get email() {
-    return this.form.get("email");
-  }
-  */
   constructor(
     private clientService: ClientsService,
     private router: Router,
-    private cfr: ComponentFactoryResolver,
-    private _alertService: AlertService
+    private _script: ScriptLoaderService,
+    private _alertService: AlertService,
+    private cfr: ComponentFactoryResolver
   ) {}
 
-  // save(c: Client) {
-  //   let monclient = { nom: c.nom, email: c.email };
-  //   c.email = "";
-  //   c.nom = "";
-  //   this.clientService.createClient(monclient).subscribe(response => {});
-  // }
   createClient({ value, valid }: { value: Client; valid: boolean }) {
-    // console.log(value);
     this.loading = true;
     if (!valid) {
-      console.log("pas valide");
+      this.showAlert("alertClient");
+      this._alertService.error("Veillez remplir correctement les champs!", true);
       this.router.navigate(["addClient"]);
     } else {
       this.clientService.createClient(value).subscribe(
         response => {
-          this.showAlert("alertClient");
-          this.loading = false;
           this.router.navigate(["client"]);
+          console.log("Ok insertion...");
+          this.showAlert("alertClient");
           this._alertService.success("Client ajouté avec succès", true);
         },
         error => {
           console.log("Erreur...");
           console.log(error);
-          this.showAlert("alertClient");
-          this._alertService.error(error);
-          this.loading = false;
         }
       );
     }
   }
-  ngOnInit() {}
+  ngOnInit() {
+    this._script.loadScripts('body', [
+      'assets/vendors/base/vendors.bundle.js',
+      'assets/demo/demo10/base/scripts.bundle.js'], true).then(() => {
+        Helpers.setLoading(false);
+  }
+}
   // showAlert
   showAlert(target) {
     this[target].clear();
