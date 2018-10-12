@@ -11,6 +11,7 @@ import { CompteService } from "../../services/comptes.service";
 export class DetailCompteComponent implements OnInit {
   id;
   myClient;
+  comptes;
   constructor(
     private router: Router,
     private route: ActivatedRoute,
@@ -21,7 +22,9 @@ export class DetailCompteComponent implements OnInit {
     this.id = this.route.snapshot.params["id"];
     this.compteService.getClientByCompte(this.id).subscribe(client => {
       this.myClient = client;
-      console.log(this.myClient);
     });
+    // this.compteService.getCompteByClient(this.id).subscribe(comptes => {
+    //   this.comptes = comptes;
+    // });
   }
 }

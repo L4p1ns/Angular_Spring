@@ -1,29 +1,46 @@
-detail compte marche
-
-<!-- <div class="row">
-    <div class="col-md-6">
+<ng-template #pasDeComptes>
+    <div class="m-alert m-alert--icon m-alert--icon-solid m-alert--outline alert alert-brand alert-dismissible fade show" role="alert">
+        <div class="m-alert__icon">
+            <i class="flaticon-exclamation-1"></i>
+            <span></span>
+        </div>
+        <div class="m-alert__text">
+            <strong>
+                Oups!
+            </strong>
+            Aucun compte pour ce client
+        </div>
+        <div class="m-alert__close">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"></button>
+        </div>
     </div>
-    <div class="col-md-6">
+</ng-template>
+<div class="row">
+  <div class="col-md-6">
+    <a routerLink="/compte" class="btn btn-link"><i class="fa fa-arrow-circle-o-left"></i>Retour</a>
+  </div>
+  <div class="col-md-6">
     <div class="btn-group pull-right">
-        <button  type="button" class="btn btn-danger">Supprimer</button>
+      <a class="btn btn-secondary">Modifier</a>
+      <button type="button" class="btn btn-danger">Supprimer</button>
     </div>
-    </div>
-    </div>
-    <hr>
-    <div *ngIf="myClient" class="card">
-    <h3 class="card-geader">{{ myClient.nom }} </h3>
-    <div class="card-block">
+  </div>
+</div>
+<hr>
+<div *ngIf="myClient" class="card">
+  <h3 class="card-geader">{{ myClient.nom }} </h3>
+  <div class="card-block">
     <div class="row">
-        <div class="col-md-8">
-        <h4>Code client: {{id}} </h4>
-        </div>
-        <div class="col-md-4">
-        </div>
+      <div class="col-md-8">
+      <h4>Code client: {{id}} </h4>
+      </div>
+      <div class="col-md-4">
+      </div>
     </div>
 
     <ul class="list-group">
-        <li class="list-group-item">Email client: {{myClient.email}} </li>
-        <li class="list-group-item">Nom client: {{myClient.nom}} </li>
+      <li class="list-group-item">Email client: {{myClient.email}} </li>
+      <li class="list-group-item">Nom client: {{myClient.nom}} </li>
     </ul>
-    </div>
-    </div> -->
+  </div>
+</div>
