@@ -44,6 +44,11 @@ const routes: Routes = [
           "./pages/default/mabanque/compte/compte.module#CompteRoutingModule"
       },
       {
+        path: "compte/:id",
+        loadChildren:
+          "./pages/default/mabanque/compte/detail-compte/detail-compte.module#DetailCompteModule"
+      },
+      {
         path: "inner2",
         loadChildren: "./pages/default/inner2/inner2.module#Inner2Module"
       },

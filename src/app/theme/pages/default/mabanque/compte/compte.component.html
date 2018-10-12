@@ -1,3 +1,192 @@
-<p>
-    Comptes marche
-</p>
+<div class="m-portlet m-portlet--tabs">
+	<div class="m-portlet__head">
+		<div class="m-portlet__head-caption">
+			<div class="m-portlet__head-title">
+				<h3 class="m-portlet__head-text">
+					Listes des Comptes
+				</h3>
+			</div>
+		</div>
+		<div class="m-portlet__head-tools">
+			<ul class="nav nav-tabs m-tabs m-tabs-line   m-tabs-line--right m-tabs-line-danger" role="tablist">
+				<li class="nav-item m-tabs__item">
+					<a class="nav-link m-tabs__link active show" data-toggle="tab" href="#m_portlet_tab_1_1" role="tab" aria-selected="true">
+						CompteEpargnie
+					</a>
+				</li>
+				<li class="nav-item m-tabs__item">
+					<a class="nav-link m-tabs__link" data-toggle="tab" href="#m_portlet_tab_1_2" role="tab" aria-selected="false">
+						CompteCourant
+					</a>
+				</li>
+				<li class="nav-item m-tabs__item">
+					<a class="nav-link m-tabs__link" data-toggle="tab" href="#m_portlet_tab_1_3" role="tab">
+						Operarions
+					</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<div class="m-portlet__body">
+		<div class="tab-content">
+			<div class="tab-pane active show" id="m_portlet_tab_1_1">
+                <!--  -->
+                <ng-template #pasDeCompte>
+                    <div class="m-alert m-alert--icon m-alert--icon-solid m-alert--outline alert alert-brand alert-dismissible fade show" role="alert">
+                        <div class="m-alert__icon">
+                            <i class="flaticon-exclamation-1"></i>
+                            <span></span>
+                        </div>
+                        <div class="m-alert__text">
+                            <strong>
+                                Oups!
+                            </strong>
+                            Aucun compte
+                        </div>
+                        <div class="m-alert__close">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    </div>
+                </ng-template>
+                <div class="m-portlet">
+                        <div class="m-portlet__head">
+                            <div class="m-portlet__head-caption">
+                                <div class="m-portlet__head-title">
+                                    <h3 class="m-portlet__head-text">
+                                        Comptes courants
+                                    </h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div *ngIf="comptes.page.totalElements>0 ;else pasDeCompte" class="m-portlet__body">
+                            <div class="m-section">
+                            <div class="m-section__content">
+                                <table class="table table-sm m-table m-table--head-bg-brand">
+                                    <thead class="thead-inverse">
+                                        <tr>
+                                            <th>
+                                                Code Compte
+                                            </th>
+                                            <th>
+                                                Date
+                                            </th>
+                                            <th>
+                                                Solde
+                                            </th>
+                                            <th>
+                                                Decouvert
+                                            </th>
+                                            <th>
+                                                Actions
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let compte of comptes._embedded.compteEpargnes">
+                                            <th scope="row">
+                                                {{compte.codeCompte}}
+                                            </th>
+                                            <td>
+                                                {{compte.dateCreation}}
+                                            </td>
+                                            <td>
+                                                {{compte.solde}}
+                                            </td>
+                                            <td>
+                                                {{compte.taux}}
+                                            </td>
+                                            <td>
+                                            <a [routerLink]="['/compte/'+compte.codeCompte]">Détails</a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--  -->
+			</div>
+			<div class="tab-pane" id="m_portlet_tab_1_2">
+                  <ng-template #pasDeCompte>
+                    <div class="m-alert m-alert--icon m-alert--icon-solid m-alert--outline alert alert-brand alert-dismissible fade show" role="alert">
+                        <div class="m-alert__icon">
+                            <i class="flaticon-exclamation-1"></i>
+                            <span></span>
+                        </div>
+                        <div class="m-alert__text">
+                            <strong>
+                                Oups!
+                            </strong>
+                            Aucun compte
+                        </div>
+                        <div class="m-alert__close">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    </div>
+                </ng-template>
+                <div class="m-portlet">
+                        <div class="m-portlet__head">
+                            <div class="m-portlet__head-caption">
+                                <div class="m-portlet__head-title">
+                                    <h3 class="m-portlet__head-text">
+                                        Comptes courants
+                                    </h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div *ngIf="comptes.page.totalElements>0 ;else pasDeCompte" class="m-portlet__body">
+                            <div class="m-section">
+                            <div class="m-section__content">
+                                <table class="table table-sm m-table m-table--head-bg-brand">
+                                    <thead class="thead-inverse">
+                                        <tr>
+                                            <th>
+                                                Code Compte
+                                            </th>
+                                            <th>
+                                                Date
+                                            </th>
+                                            <th>
+                                                Solde
+                                            </th>
+                                            <th>
+                                                Decouvert
+                                            </th>
+                                            <th>
+                                                Actions
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let compte of comptes._embedded.compteCourants">
+                                            <th scope="row">
+                                                {{compte.codeCompte}}
+                                            </th>
+                                            <td>
+                                                {{compte.dateCreation}}
+                                            </td>
+                                            <td>
+                                                {{compte.solde}}
+                                            </td>
+                                            <td>
+                                                {{compte.decouvert}}
+                                            </td>
+                                            <td>
+                                            <a [routerLink]="['/compte/'+compte.codeCompte]" >Détails</a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+			</div>
+			<div class="tab-pane" id="m_portlet_tab_1_3">
+				3 operation
+			</div>
+		</div>
+	</div>
+</div>
+<!-- fin -->

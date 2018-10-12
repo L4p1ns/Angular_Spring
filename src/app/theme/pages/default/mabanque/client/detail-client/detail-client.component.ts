@@ -19,7 +19,7 @@ import { ClientsService } from "../../services/clients.service";
   styles: []
 })
 export class DetailClientComponent implements OnInit {
-  id: number;
+  id:number;
   monclient;
   @ViewChild("alertClient", { read: ViewContainerRef })
   alertClient: ViewContainerRef;

@@ -1,16 +1,27 @@
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { Http } from "@angular/http";
 
 @Injectable()
 export class CompteService {
   private url = "http://localhost:8080/comptes";
-  constructor(private http: Http) {}
+  httpOptions = {
+    monheaders: new HttpHeaders({ "Content-Type": "application/json" })
+  };
+  constructor(private http: HttpClient) {}
 
   getComptes() {
     return this.http.get(this.url);
   }
 
-  createCompte() {
-    // return this.http.post(this.url, JSON.stringify(client));
+  getCompte(id: number) {
+    return this.http.get(this.url + "/" + id, {
+      headers: this.httpOptions.monheaders
+    });
   }
+  getClientByCompte(id) {
+    return this.http.get(this.url + "/" + id + "/client", {
+      headers: this.httpOptions.monheaders
+    });
+  }
+  createCompte() {}
 }

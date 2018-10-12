@@ -1,12 +1,21 @@
 import { Component, OnInit } from "@angular/core";
 
+import { CompteService } from "../services/comptes.service";
+
 @Component({
   selector: "compte",
   templateUrl: "./compte.component.html",
   styles: []
 })
 export class CompteComponent implements OnInit {
-  constructor() {}
+  comptes: any = {};
+  etatTab: boolean = false;
 
-  ngOnInit() {}
+  constructor(private compteService: CompteService) {}
+
+  ngOnInit() {
+    this.compteService.getComptes().subscribe(resp => {
+      this.comptes = resp;
+    });
+  }
 }
