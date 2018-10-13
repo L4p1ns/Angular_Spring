@@ -4,9 +4,9 @@ import { RouterModule, Routes } from "@angular/router";
 
 import { LayoutModule } from "../../../../layouts/layout.module";
 import { DefaultComponent } from "../../default.component";
-import { CompteService } from "../services/comptes.service";
-import { CompteComponent } from "./compte.component";
 import { OperationsService } from "../services/operations.service";
+import { OperationComponent } from "./operation.component";
+
 const routes: Routes = [
   {
     path: "",
@@ -14,7 +14,7 @@ const routes: Routes = [
     children: [
       {
         path: "",
-        component: CompteComponent
+        component: OperationComponent
       }
     ]
   }
@@ -23,7 +23,7 @@ const routes: Routes = [
 @NgModule({
   imports: [CommonModule, RouterModule.forChild(routes), LayoutModule],
   exports: [RouterModule],
-  declarations: [CompteComponent],
-  providers: [CompteService, OperationsService]
+  declarations: [OperationComponent],
+  providers: [OperationsService]
 })
-export class CompteRoutingModule {}
+export class OperationRoutingModule {}

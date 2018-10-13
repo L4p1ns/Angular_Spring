@@ -184,7 +184,146 @@
                 </div>
 			</div>
 			<div class="tab-pane" id="m_portlet_tab_1_3">
-				3 operation
+                <!-- op -->
+                <ng-template #pasDeOp>
+                    <div class="m-alert m-alert--icon m-alert--icon-solid m-alert--outline alert alert-brand alert-dismissible fade show" role="alert">
+                        <div class="m-alert__icon">
+                            <i class="flaticon-exclamation-1"></i>
+                            <span></span>
+                        </div>
+                        <div class="m-alert__text">
+                            <strong>
+                                Oups!
+                            </strong>
+                            Aucune opérations
+                        </div>
+                        <div class="m-alert__close">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    </div>
+                </ng-template>
+                <div class="m-portlet">
+                        <div class="m-portlet__head">
+                            <div class="m-portlet__head-caption">
+                                <div class="m-portlet__head-title">
+                                    <h3 class="m-portlet__head-text">
+                                        Versements
+                                    </h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div *ngIf="comptes.page.totalElements>0 ;else pasDeOp" class="m-portlet__body">
+                            <div class="m-section">
+                            <div class="m-section__content">
+                                <table class="table table-sm m-table m-table--head-bg-brand">
+                                    <thead class="thead-inverse">
+                                        <tr>
+                                            <th>
+                                                Nuemro
+                                            </th>
+                                            <th>
+                                                Montant
+                                            </th>
+                                            <th>
+                                                Date
+                                            </th>
+                                            <th>
+                                                Actions
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let operation of operations._embedded.versements">
+                                            <th scope="row">
+                                                {{operation.numero}}
+                                            </th>
+                                            <td>
+                                                {{operation.montant}}
+                                            </td>
+                                            <td>
+                                                {{operation.dateOperation}}
+                                            </td>
+                                            <td>
+                                            Details
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /op -->
+                <!-- Retait -->
+                <ng-template #pasDeOp>
+                    <div class="m-alert m-alert--icon m-alert--icon-solid m-alert--outline alert alert-brand alert-dismissible fade show" role="alert">
+                        <div class="m-alert__icon">
+                            <i class="flaticon-exclamation-1"></i>
+                            <span></span>
+                        </div>
+                        <div class="m-alert__text">
+                            <strong>
+                                Oups!
+                            </strong>
+                            Aucune opérations
+                        </div>
+                        <div class="m-alert__close">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    </div>
+                </ng-template>
+                <div class="m-portlet">
+                        <div class="m-portlet__head">
+                            <div class="m-portlet__head-caption">
+                                <div class="m-portlet__head-title">
+                                    <h3 class="m-portlet__head-text">
+                                        Retraits
+                                    </h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div *ngIf="comptes.page.totalElements>0 ;else pasDeOp" class="m-portlet__body">
+                            <div class="m-section">
+                            <div class="m-section__content">
+                                <table class="table table-sm m-table m-table--head-bg-brand">
+                                    <thead class="thead-inverse">
+                                        <tr>
+                                            <th>
+                                                Numero
+                                            </th>
+                                            <th>
+                                                Montant
+                                            </th>
+                                            <th>
+                                                Date
+                                            </th>
+                                            <th>
+                                                Actions
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let operation of operations._embedded.retraits">
+                                            <th scope="row">
+                                                {{operation.numero}}
+                                            </th>
+                                            <td>
+                                                {{operation.montant}}
+                                            </td>
+                                            <td>
+                                                {{operation.dateOperation}}
+                                            </td>
+                                            <td>
+                                            Details
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /Retrait -->
 			</div>
 		</div>
 	</div>
